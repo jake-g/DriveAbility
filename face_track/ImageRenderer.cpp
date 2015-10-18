@@ -7,6 +7,13 @@
 #include "stdafx.h"
 #include <string>
 #include "ImageRenderer.h"
+#include <iostream>
+#include <fstream>
+#include <chrono>
+#include <cmath>
+
+
+
 
 using namespace DirectX;
 
@@ -18,6 +25,7 @@ static const double c_FaceRotationIncrementInDegrees = 5.0f;
 
 static const float c_TextLayoutWidth = 500;
 static const float c_TextLayoutHeight = 500;
+bool logBool = false;
 
 /// <summary>
 /// Constructor
@@ -133,6 +141,21 @@ void ImageRenderer::DiscardResources()
     }
     SafeRelease(m_pRenderTarget);
     SafeRelease(m_pBitmap);
+}
+
+
+void write(const std::string& input)
+{
+  std::ofstream logfile;
+  logfile.open ("log.csv", std::ios_base::app);
+  logfile << input;
+  logfile.close();
+}
+
+long long GetTime()
+{
+	auto timeSinceEpoch = std::chrono::system_clock::now().time_since_epoch();
+	return std::chrono::duration_cast<std::chrono::milliseconds>(timeSinceEpoch).count();
 }
 
 /// <summary>
@@ -300,24 +323,34 @@ void ImageRenderer::DrawFaceFrameResults(int iFace, const RectI* pFaceBox, const
         // extract each face property information and store it is faceText
         for (int iProperty = 0; iProperty < FaceProperty::FaceProperty_Count; iProperty++)
         {
-            switch (iProperty)
-            {
-            case FaceProperty::FaceProperty_Happy:
-                faceText += L"Happy :";
+
+
+			switch (iProperty)
+			{
+			case FaceProperty::FaceProperty_Happy:
+				faceText += L"Happy :";
+				write(std::to_string(GetTime()));
+				write(",isHappy,");
+				logBool = true;
+				break;
+			case FaceProperty::FaceProperty_Engaged:
+				faceText += L"Engaged :";
+				break;
+			case FaceProperty::FaceProperty_LeftEyeClosed:
+				faceText += L"LeftEyeClosed :";
+				break;
+			case FaceProperty::FaceProperty_RightEyeClosed:
+				faceText += L"RightEyeClosed :";
+				//TODO look at eyes closed
+				break;
+			case FaceProperty::FaceProperty_LookingAway:
+				faceText += L"LookingAway :";
+				write(std::to_string(GetTime()));
+				write(",isDistracted,");
+				logBool = true;
                 break;
-            case FaceProperty::FaceProperty_Engaged:
-                faceText += L"Engaged :";
-                break;
-            case FaceProperty::FaceProperty_LeftEyeClosed:
-                faceText += L"LeftEyeClosed :";
-                break;
-            case FaceProperty::FaceProperty_RightEyeClosed:
-                faceText += L"RightEyeClosed :";
-                break;
-            case FaceProperty::FaceProperty_LookingAway:
-                faceText += L"LookingAway :";
-                break;
-            case FaceProperty::FaceProperty_MouthMoved:
+
+			case FaceProperty::FaceProperty_MouthMoved:
                 faceText += L"MouthMoved :";
                 break;
             case FaceProperty::FaceProperty_MouthOpen: 
@@ -334,9 +367,18 @@ void ImageRenderer::DrawFaceFrameResults(int iFace, const RectI* pFaceBox, const
             {
             case DetectionResult::DetectionResult_Unknown:
                 faceText += L" UnKnown";
+				faceText += L" Yes";
+				if (logBool == true) {
+					write("null\n");
+					logBool = false;
+				}
                 break;
             case DetectionResult::DetectionResult_Yes:
                 faceText += L" Yes";
+				if (logBool == true) {
+				write("True\n");
+				logBool = false;
+				}
                 break;
 
             // consider a "maybe" as a "no" to restrict 
@@ -344,6 +386,10 @@ void ImageRenderer::DrawFaceFrameResults(int iFace, const RectI* pFaceBox, const
             case DetectionResult::DetectionResult_No:
             case DetectionResult::DetectionResult_Maybe:
                 faceText += L" No";
+				if (logBool == true) {
+					write("False\n");
+					logBool = false;
+				}
                 break;
             default:
                 break;
@@ -353,10 +399,16 @@ void ImageRenderer::DrawFaceFrameResults(int iFace, const RectI* pFaceBox, const
         }
 
         // extract face rotation in degrees as Euler angles
-        int pitch, yaw, roll;
+        int pitch, yaw, roll, lastYaw=0;
         ExtractFaceRotationInDegrees(pFaceRotation, &pitch, &yaw, &roll);
+		faceText += L"FaceYaw : " + std::to_wstring(yaw) + L"\n";
+		if (abs(lastYaw - yaw) >=10) {
+			write(std::to_string(GetTime()));
+			write(",");
+			write(std::to_string(yaw) + "\n");
+			lastYaw = yaw;
+		}
 
-        faceText += L"FaceYaw : " + std::to_wstring(yaw) + L"\n";
         faceText += L"FacePitch : " + std::to_wstring(pitch) + L"\n";
         faceText += L"FaceRoll : " + std::to_wstring(roll) + L"\n";
 
