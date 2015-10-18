@@ -82,11 +82,11 @@ def read_chunk(filename):       # read chunk, build metric
     if numpy.var(figit) > 15:
         figit_bool = 100
         f_count = f_count + 1
-
     metrics.append([time, happiness, distractedness, figit_bool])
 
 
 def write_metrics(list):        # write to file
+    del list[0]
     with open("metric.csv", "wb") as f:
         writer = csv.writer(f)
         writer.writerows(list)
