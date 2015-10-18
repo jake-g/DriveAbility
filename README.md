@@ -14,7 +14,10 @@
     - Stop Signs / Stop Lights
     - Google Maps
     - Scrubable timelapse of face
-  - Aggregated driving score
+  - Scores
+    - Not looking
+    - Happiness
+    - Figeting
   - simplified timeseries graph of distraction
 - Driving Events
   - Missing the green light at a stop light (and getting honked at)
