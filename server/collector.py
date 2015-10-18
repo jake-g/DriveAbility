@@ -45,6 +45,7 @@ def show_entries():
 def get_carride():
     content = request.json
     print content
+    return "beautiful"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
