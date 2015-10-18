@@ -41,7 +41,10 @@ def show_entries():
     # entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
     return render_template('collector.html')
 
-# @app.route('')
+@app.route('/carride', methods=['POST'])
+def get_carride():
+    content = request.json
+    print content
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
