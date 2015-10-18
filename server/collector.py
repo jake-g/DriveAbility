@@ -3,6 +3,8 @@ __author__ = 'chrisgervang'
 import sqlite3
 from flask import Flask, request, session, g, render_template
 from contextlib import closing
+import numpy as np
+import datetime
 
 # configuration
 DATABASE = '/tmp/dubhacks_collector.db'
@@ -15,6 +17,7 @@ PASSWORD = 'default'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+rides = {}
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
@@ -42,10 +45,21 @@ def show_entries():
     return render_template('collector.html')
 
 @app.route('/carride', methods=['POST'])
-def get_carride():
-    content = request.json
-    print content
+def post_carride():
+    rides = request.json
+    print rides
     return "beautiful"
+
+@app.route('/rides', methods=["GET"])
+def get_rides():
+    time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") \
+           + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
+    dist = np.average([value["distractedness"] for value in rides])
+    happ = np.average([value["happiness"] for value in rides])
+    fidg = np.average([value["fidgetiness"] for value in rides])
+    final = "{distractedness: " + dist + ", happiness: " + happ + ", fidgetiness: " + fidg + ", time: " + time + "}"
+    print final
+    return final
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
