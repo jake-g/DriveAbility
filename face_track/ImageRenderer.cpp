@@ -372,7 +372,7 @@ void ImageRenderer::DrawFaceFrameResults(int iFace, const RectI* pFaceBox, const
             case DetectionResult::DetectionResult_Yes:
                 faceText += L" Yes";
 				if (logBool == true) {
-				write("True\n");
+				write("0\n");
 				logBool = false;
 				}
                 break;
@@ -383,7 +383,7 @@ void ImageRenderer::DrawFaceFrameResults(int iFace, const RectI* pFaceBox, const
             case DetectionResult::DetectionResult_Maybe:
                 faceText += L" No";
 				if (logBool == true) {
-					write("False\n");
+					write("0\n");
 					logBool = false;
 				}
                 break;
