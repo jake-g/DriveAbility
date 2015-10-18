@@ -1,17 +1,18 @@
 __author__ = 'jake'
 
-#!/usr/bin/env python
-
 # Import module
 import os
 import numpy
 import csv
 import warnings
+import requests
+import simplejson
 warnings.filterwarnings("ignore")       # dont ask
 
 logfile = 'log.csv'
 metrics = []    # global
 chunk = 30
+figit_thresh = 20
 
 # Build header by looking at columns of data
 def build_header(filename):
@@ -79,22 +80,29 @@ def read_chunk(filename):       # read chunk, build metric
 
     happiness = 100*(1 - float(happiness)/h_count)
     distractedness = 100*(1 - float(distractedness)/d_count)
-    if numpy.var(figit) > 15:
+    if numpy.var(figit) > figit_thresh:
         figit_bool = 100
         f_count = f_count + 1
-    metrics.append([time, happiness, distractedness, figit_bool])
+
+    metrics.append({'time': time,'happiness': happiness, 'distractedness': distractedness, 'fidgetiness': figit_bool})
 
 
 def write_metrics(list):        # write to file
     del list[0]
-    with open("metric.csv", "wb") as f:
-        writer = csv.writer(f)
-        writer.writerows(list)
+    print list
+    # with open("metric.csv", "wb") as f:
+    #     writer = csv.writer(f)
+    #     writer.writerows(list)
 
 
 def main():
     file_splitter(logfile, chunk)
-    write_metrics(metrics)
+    print metrics
+
+    r = requests.post('http://159.203.247.122:5000/carride', json={"ride": simplejson.dumps(metrics)})
+    # print r.json()
+    print r.status_code
+    # write_metrics(metrics)
 
 if __name__ == '__main__':
     main()
