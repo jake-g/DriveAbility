@@ -22,6 +22,7 @@
   "dependencies": {
     "material-ui": "^0.12.1",
     "react": "^0.13.3",
+    "react-gmaps": "^1.0.2",
     "react-router": "^1.0.0-rc1",
     "reactcss": "^0.4.1",
     "underscore": "^1.8.3"

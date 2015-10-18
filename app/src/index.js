@@ -4,6 +4,7 @@ import React from 'react';
 import FileLoader from './components/FileLoader.jsx';
 import PickleBrowser from './components/PickleBrowser.jsx';
 import App from './components/App.jsx';
+import MapComponent from './components/MapComponent.jsx';
 let injectTapEventPlugin = require("react-tap-event-plugin");
 
 //Needed for onTouchTap
@@ -13,6 +14,6 @@ let injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 React.render(
-  React.createElement(FileLoader),
+  React.createElement(MapComponent),
   document.getElementById('root')
 );
