@@ -46,12 +46,13 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    rides = request.json
+    rides = request.json["ride"]
     print rides
     return "beautiful"
 
 @app.route('/rides', methods=["GET"])
 def get_rides():
+
     time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") \
            + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
     dist = np.average([value["distractedness"] for value in rides])
