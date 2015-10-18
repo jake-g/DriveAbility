@@ -26,14 +26,14 @@ def add_header(filename, header, data):
         w.writerows(data)
 
 def parse_csv(filename):
-    columns = defaultdict(list) # each value in each column is appended to a list
+    rows = ''
     with open(filename) as f:
         reader = csv.DictReader(f) # read rows into a dictionary format
         for row in reader: # read a row as {column1: value1, column2: value2,...}
-            for (k,v) in row.items(): # go over each column name and value
-                columns[k].append(v) # append the value into the appropriate list
+            rows.append(row) # append the value into the appropriate list
+            print row
     print 'Split Columns...'
-    return columns
+    return rows
 
 def debug_print(columns):
     print(columns['Timestamp'])
@@ -42,10 +42,15 @@ def debug_print(columns):
 
 
 def main():
-    filename = "log.csv"
-    build_header(filename) # format csv
-    columns = parse_csv(filename)
-    debug_print(columns)
+    filename = "test.csv"
+    # build_header(filename) # format csv
+    # columns = parse_csv(filename)
+    # debug_print(columns)
+    with open(filename) as f:
+        reader = csv.reader(f)
+
+        for line in reader:
+           print line
 
 if __name__ == '__main__':
     main()
