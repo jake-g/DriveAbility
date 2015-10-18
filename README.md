@@ -1,7 +1,11 @@
-# pickoleon
-npm install -g gulp
+
+# Distracted Driver
 
 
+#### Steps
+* `npm install -g gulp`
+* `npm install`
+* `gulp app`
 
 
 Visuals
