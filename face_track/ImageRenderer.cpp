@@ -368,10 +368,6 @@ void ImageRenderer::DrawFaceFrameResults(int iFace, const RectI* pFaceBox, const
             case DetectionResult::DetectionResult_Unknown:
                 faceText += L" UnKnown";
 				faceText += L" Yes";
-				if (logBool == true) {
-					write("null\n");
-					logBool = false;
-				}
                 break;
             case DetectionResult::DetectionResult_Yes:
                 faceText += L" Yes";
