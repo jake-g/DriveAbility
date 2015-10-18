@@ -11,7 +11,7 @@ warnings.filterwarnings("ignore")       # dont ask
 
 logfile = 'log.csv'
 metrics = []    # global
-chunk = 50
+chunk = 30
 
 # Build header by looking at columns of data
 def build_header(filename):
@@ -80,7 +80,7 @@ def read_chunk(filename):       # read chunk, build metric
     happiness = 100*(1 - float(happiness)/h_count)
     distractedness = 100*(1 - float(distractedness)/d_count)
     if numpy.var(figit) > 15:
-        figit_bool = 1
+        figit_bool = 100
         f_count = f_count + 1
 
     metrics.append([time, happiness, distractedness, figit_bool])
