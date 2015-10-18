@@ -42,15 +42,15 @@ def debug_print(columns):
 
 
 def main():
-    filename = "test.csv"
-    # build_header(filename) # format csv
-    # columns = parse_csv(filename)
-    # debug_print(columns)
-    with open(filename) as f:
-        reader = csv.reader(f)
-
-        for line in reader:
-           print line
+    filename = "log.csv"
+    build_header(filename) # format csv
+    columns = parse_csv(filename)
+    debug_print(columns)
+    # with open(filename) as f:
+    #     reader = csv.reader(f)
+    #
+    #     for line in reader:
+    #        print line
 
 if __name__ == '__main__':
     main()
