@@ -7,12 +7,13 @@
 * `npm install`
 * `gulp app`
 
+#### Outline
 
 - Visuals
   - timelines
     - Stop Signs / Stop Lights
     - Google Maps
-    - Scrobable timelapse of face
+    - Scrubable timelapse of face
   - Aggregated driving score
   - simplified timeseries graph of distraction
 - Driving Events
