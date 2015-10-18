@@ -383,7 +383,7 @@ void ImageRenderer::DrawFaceFrameResults(int iFace, const RectI* pFaceBox, const
             case DetectionResult::DetectionResult_Maybe:
                 faceText += L" No";
 				if (logBool == true) {
-					write("0\n");
+					write("1\n");
 					logBool = false;
 				}
                 break;
