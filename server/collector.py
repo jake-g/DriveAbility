@@ -53,8 +53,8 @@ def post_carride():
 @app.route('/rides', methods=["GET"])
 def get_rides():
 
-    time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") \
-           + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
+    # time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
+    time = 2
     dist = np.average([value["distractedness"] for value in rides])
     happ = np.average([value["happiness"] for value in rides])
     fidg = np.average([value["fidgetiness"] for value in rides])
