@@ -1,7 +1,7 @@
 __author__ = 'chrisgervang'
 
 import sqlite3
-from flask import Flask, request, session, g, render_template
+from flask import Flask, request, session, g, render_template, sessions
 from contextlib import closing
 import numpy as np
 import datetime
@@ -16,6 +16,7 @@ PASSWORD = 'default'
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.secret_key = 'some key for session'
 
 
 def connect_db():
@@ -45,13 +46,13 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    g.rides = request.json["ride"][1:]
+    session['rides'] = request.json["ride"][1:]
     print getattr(g, 'rides', None)
     return "beautiful"
 
 @app.route('/rides', methods=["GET"])
 def get_rides():
-    rides = getattr(g, 'rides', None)
+    rides = session['rides']
     print rides
     print rides[0]["time"], rides[-1]["time"]
     time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
