@@ -5,6 +5,7 @@ from flask import Flask, request, g, render_template, session
 from contextlib import closing
 import numpy as np
 import datetime
+import json
 
 # configuration
 DATABASE = '/tmp/dubhacks_collector.db'
@@ -16,7 +17,7 @@ PASSWORD = 'default'
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.secret_key = 'some key for session'
+# app.secret_key = 'some key for session'
 
 
 def connect_db():
@@ -46,24 +47,29 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    session['ridesa'] = request.json["ride"]
-    print session['ridesa']
+    obj = request.json["ride"]
+
+    with open('gherkin.json', 'w') as outfile:
+         json.dump(obj, outfile, indent="  ")
+    # session['ridesa'] = request.json["ride"]
+    print obj
     return "beautiful"
 
 @app.route('/rides', methods=["GET"])
 def get_rides():
-    rides = session['ridesa']
-    print rides
-    print rides[0]["time"], rides[-1]["time"]
-    time = datetime.datetime.fromtimestamp(int(rides[1]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
-    # time = "2"
-    dist = np.average([value["distractedness"] for value in rides])
-    happ = np.average([value["happiness"] for value in rides])
-    fidg = np.average([value["fidgetiness"] for value in rides])
-    final = "{distractedness: " + str(dist) + ", happiness: " + str(happ) + ", fidgetiness: " + str(fidg) + ", time: " + str(time) + "}"
-    print final
-    return final
+    with open('gherkin.json', 'r') as infile:
+        rides = json.dumps(infile)
+        print rides
+        print rides[0]["time"], rides[-1]["time"]
+        time = datetime.datetime.fromtimestamp(int(rides[1]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
+        # time = "2"
+        dist = np.average([value["distractedness"] for value in rides])
+        happ = np.average([value["happiness"] for value in rides])
+        fidg = np.average([value["fidgetiness"] for value in rides])
+        final = "{distractedness: " + str(dist) + ", happiness: " + str(happ) + ", fidgetiness: " + str(fidg) + ", time: " + str(time) + "}"
+        print final
+        return final
 
 if __name__ == '__main__':
-    app.secret_key = 'some key for session'
+    # app.secret_key = 'some key for session'
     app.run(host='0.0.0.0')
