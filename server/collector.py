@@ -1,7 +1,7 @@
 __author__ = 'chrisgervang'
 
 import sqlite3
-from flask import Flask, request, g, render_template, session
+from flask import Flask, request, g, render_template, session, jsonify
 from contextlib import closing
 import numpy as np
 import datetime
@@ -68,7 +68,7 @@ def get_rides():
         final = {"distractedness": dist, "happiness": happ, "fidgetiness": fidg, "time": time}
         # final = "{distractedness: " + str(dist) + ", happiness: " + str(happ) + ", fidgetiness: " + str(fidg) + ", time: " + str(time) + "}"
         print final
-        return final
+        return jsonify(**final)
 
 if __name__ == '__main__':
     # app.secret_key = 'some key for session'
