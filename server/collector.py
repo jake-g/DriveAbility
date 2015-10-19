@@ -1,7 +1,7 @@
 __author__ = 'chrisgervang'
 
 import sqlite3
-from flask import Flask, request, session, g, render_template, sessions
+from flask import Flask, request, g, render_template, session
 from contextlib import closing
 import numpy as np
 import datetime
@@ -47,7 +47,7 @@ def show_entries():
 @app.route('/carride', methods=['POST'])
 def post_carride():
     session['rides'] = request.json["ride"][1:]
-    print getattr(g, 'rides', None)
+    print session['rides']
     return "beautiful"
 
 @app.route('/rides', methods=["GET"])
