@@ -47,7 +47,7 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    obj = request.json
+    obj = request.json["ride"]
 
     with open('gherkin.json', 'w') as outfile:
          json.dump(obj, outfile, indent="  ")
