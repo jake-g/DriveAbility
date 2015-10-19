@@ -3,6 +3,7 @@
 import React from 'react';
 import FileLoader from './components/FileLoader.jsx';
 import PickleBrowser from './components/PickleBrowser.jsx';
+import Dial from './components/Dial.jsx'
 import App from './components/App.jsx';
 import MapComponent from './components/MapComponent.jsx';
 let injectTapEventPlugin = require("react-tap-event-plugin");
@@ -13,7 +14,9 @@ let injectTapEventPlugin = require("react-tap-event-plugin");
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-React.render(
-  React.createElement(MapComponent),
-  document.getElementById('root')
-);
+//
+// React.render(
+//   React.createElement(Dial),
+//   document.getElementById('root')
+// );
+
