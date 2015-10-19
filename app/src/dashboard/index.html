@@ -1,5 +1,21 @@
 <!doctype html>
-<html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,8 +105,104 @@
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
         </nav>
       </div>
-      <main class="mdl-layout__content mdl-color--grey-100" id="trip-container">
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content" id="animate">
+          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+          </div>
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="toggle-view">
+            <p class="mdl-js-ripple-effect date">Oct 18th | 2:43 AM - 3:00 AM</p>
 
+            <div class="mdl-card__actions mdl-card--border read-more-left">
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#3498db" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">33<tspan font-size="0.2" dy="-0.07">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Distractedness</p>
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#f1c40f" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Happiness</p>
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#2ecc71" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">15<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Fidgetiness</p>
+            </div>
+            <div class="mdl-card__actions mdl-card--border read-more-right">
+              <a href="#collapse1" class="mdl-button mdl-js-button mdl-js-ripple-effect nav-toggle">View More</a>
+            </div>
+            <div class="content" id="collapse1" style="display:none">
+              <p>yoyoyo</p>
+            </div>
+          </div>
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+            <p class="mdl-js-ripple-effect date">Oct 16th | 1:45 PM - 2:13 PM</p>
+
+            <div class="mdl-card__actions mdl-card--border read-more-left">
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#3498db" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">25<tspan font-size="0.2" dy="-0.07">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Distractedness</p>
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#f1c40f" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">76<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Happiness</p>
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#2ecc71" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">18<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Fidgetiness</p>
+            </div>
+            <div class="mdl-card__actions mdl-card--border read-more-right">
+              <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">View More</a>
+            </div>
+          </div>
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+            <p class="mdl-js-ripple-effect date">Oct 12th | 6:02 PM - 6:30 PM</p>
+
+            <div class="mdl-card__actions mdl-card--border read-more-left">
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#3498db" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">27<tspan font-size="0.2" dy="-0.07">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Distractedness</p>
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#f1c40f" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">79<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Happiness</p>
+            </div>
+            <div class="percentages">
+              <svg class="percentages-title" fill="#2ecc71" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--3-col mdl-cell--9-col-desktop">
+                <use xlink:href="#piechart" mask="url(#piemask)" />
+                <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">20<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+              </svg>
+              <p class="percentages-title">Fidgetiness</p>
+            </div>
+            <div class="mdl-card__actions mdl-card--border read-more-right">
+              <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">View More</a>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
@@ -100,6 +212,10 @@
             <circle cx=0.5 cy=0.5 r=0.40 fill="black" />
           </mask>
           <g id="piechart">
+            <circle cx=0.5 cy=0.5 r=0.5 />
+            <path d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 0 1 0.95 0.28 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
+          </g>
+          <g id="piechart-1">
             <circle cx=0.5 cy=0.5 r=0.5 />
             <path d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 0 1 0.95 0.28 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
           </g>
@@ -141,28 +257,6 @@
         </defs>
       </svg>
 
-
-      <div id="tripCardTemplate" style="display: none;">
-        <div class="mdl-grid demo-content" id="animate">
-          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-          </div>
-          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" id="toggle-view">
-            <p class="mdl-js-ripple-effect date">Oct 18th | 2:43 AM - 3:00 AM</p>
-            <div class="mdl-card__actions mdl-card--border read-more-left">
-            </div>
-            <div id="dial-conatiner" class="mdl-cell mdl-cell--12-col mdl-grid">
-              
-            </div>
-            <div class="mdl-card__actions mdl-card--border read-more-right">
-              <a href="#collapse1" class="mdl-button mdl-js-button mdl-js-ripple-effect nav-toggle">View More</a>
-            </div>
-            <div class="content" id="collapse1" style="display:none">
-              <p>yoyoyo</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
       <script>
       $(document).ready(function() {
@@ -170,8 +264,7 @@
 
           $('#animate').addClass('animated fadeInDown');
 
-          $('.nav-toggle').click(function(e){
-            e.stopPropagation();
+          $('.nav-toggle').click(function(){
             var collapse_content_selector = $(this).attr('href');
             var toggle_switch = $(this);
             $(collapse_content_selector).toggle(function(){
@@ -186,10 +279,7 @@
 
       });
       </script>
-      <script src="./tripcard.js"></script>
 
+    <script src="../../material.min.js"></script>
   </body>
-
-  <script src="http://localhost:9100/webpack-dev-server.js"></script>
-  <script src="build/bundle.js" type="text/javascript"></script>
 </html>
