@@ -46,7 +46,7 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    session['ridesa'] = request.json["ride"][1:]
+    session['ridesa'] = request.json["ride"]
     print session['ridesa']
     return "beautiful"
 
@@ -55,7 +55,7 @@ def get_rides():
     rides = session['ridesa']
     print rides
     print rides[0]["time"], rides[-1]["time"]
-    time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
+    time = datetime.datetime.fromtimestamp(int(rides[1]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
     # time = "2"
     dist = np.average([value["distractedness"] for value in rides])
     happ = np.average([value["happiness"] for value in rides])
