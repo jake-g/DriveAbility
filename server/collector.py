@@ -47,7 +47,7 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    obj = request.json["ride"]
+    obj = request.json
 
     with open('gherkin.json', 'w') as outfile:
          json.dump(obj, outfile, indent="  ")
@@ -58,7 +58,7 @@ def post_carride():
 @app.route('/rides', methods=["GET"])
 def get_rides():
     with open('gherkin.json', 'r') as infile:
-        rides = json.dumps(infile)
+        rides = json.dumps(infile)["ride"]
         print rides
         print rides[0]["time"], rides[-1]["time"]
         time = datetime.datetime.fromtimestamp(int(rides[1]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
