@@ -52,6 +52,7 @@ def post_carride():
 
 @app.route('/rides', methods=["GET"])
 def get_rides():
+    print rides
     print rides[0]["time"], rides[-1]["time"]
     time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
     # time = "2"
