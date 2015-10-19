@@ -46,13 +46,13 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    session['rides'] = request.json["ride"][1:]
-    print session['rides']
+    session['ridesa'] = request.json["ride"][1:]
+    print session['ridesa']
     return "beautiful"
 
 @app.route('/rides', methods=["GET"])
 def get_rides():
-    rides = session['rides']
+    rides = session['ridesa']
     print rides
     print rides[0]["time"], rides[-1]["time"]
     time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
@@ -65,4 +65,5 @@ def get_rides():
     return final
 
 if __name__ == '__main__':
+    app.secret_key = 'some key for session'
     app.run(host='0.0.0.0')
