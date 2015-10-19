@@ -58,7 +58,7 @@ def get_rides():
     dist = np.average([value["distractedness"] for value in rides])
     happ = np.average([value["happiness"] for value in rides])
     fidg = np.average([value["fidgetiness"] for value in rides])
-    final = "{distractedness: " + dist + ", happiness: " + happ + ", fidgetiness: " + fidg + ", time: " + time + "}"
+    final = "{distractedness: " + str(dist) + ", happiness: " + str(happ) + ", fidgetiness: " + str(fidg) + ", time: " + time + "}"
     print final
     return final
 
