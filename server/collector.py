@@ -47,7 +47,7 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    obj = {"ride": request.json["ride"]}
+    obj = {"ride": json.dump(request.json["ride"])}
 
     with open('gherkin.json', 'w') as outfile:
          json.dump(obj, outfile)
@@ -60,7 +60,7 @@ def get_rides():
     with open('gherkin.json', 'r') as infile:
         rides = json.load(infile)["ride"]
         print rides
-        print rides[0]["time"], rides[-1]["time"]
+        print rides[1]["time"], rides[-1]["time"]
         time = datetime.datetime.fromtimestamp(int(rides[1]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
         # time = "2"
         dist = np.average([value["distractedness"] for value in rides])
