@@ -46,18 +46,19 @@ def show_entries():
 @app.route('/carride', methods=['POST'])
 def post_carride():
     g.rides = request.json["ride"][1:]
-    print g.rides
+    print getattr(g, 'rides', None)
     return "beautiful"
 
 @app.route('/rides', methods=["GET"])
 def get_rides():
-    print g.rides
-    print g.rides[0]["time"], g.rides[-1]["time"]
-    time = datetime.datetime.fromtimestamp(int(g.rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(g.rides[-1]["time"])/1000).strftime(" - %I:%M %p")
+    rides = getattr(g, 'rides', None)
+    print rides
+    print rides[0]["time"], rides[-1]["time"]
+    time = datetime.datetime.fromtimestamp(int(rides[0]["time"])/1000).strftime("%h %d | %I:%M %p") + datetime.datetime.fromtimestamp(int(rides[-1]["time"])/1000).strftime(" - %I:%M %p")
     # time = "2"
-    dist = np.average([value["distractedness"] for value in g.rides])
-    happ = np.average([value["happiness"] for value in g.rides])
-    fidg = np.average([value["fidgetiness"] for value in g.rides])
+    dist = np.average([value["distractedness"] for value in rides])
+    happ = np.average([value["happiness"] for value in rides])
+    fidg = np.average([value["fidgetiness"] for value in rides])
     final = "{distractedness: " + str(dist) + ", happiness: " + str(happ) + ", fidgetiness: " + str(fidg) + ", time: " + str(time) + "}"
     print final
     return final
