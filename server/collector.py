@@ -46,7 +46,7 @@ def show_entries():
 
 @app.route('/carride', methods=['POST'])
 def post_carride():
-    rides = request.json["ride"]
+    rides = request.json["ride"][1:]
     print rides
     return "beautiful"
 
